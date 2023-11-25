@@ -24,32 +24,47 @@
           <h5>Formulario</h5>
           <hr />
           <form action="javascript:void(0);" onsubmit="app.guardar()">
-            <input type="hidden" id="id_" />
-            <label for="nombres">Nombres</label>
+            <input type="hidden" id="id_ruta" />
+            <label for="fecha">Fecha</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
-              id="nombres"
-              placeholder="Nombres Apellidos"
+              id="fecha"
+              placeholder="Fecha de salida"
               autofocus
               required
             />
-            <label for="email">Email</label>
+            <label for="hora_sal">Hora de Salida</label>
             <input
-              type="email"
+              type="time"
               class="form-control"
-              id="email"
-              placeholder="email@email.com"
+              id="hora_sal"
+              placeholder="12:00"
               required
             />
-            <label for="email">Edad</label>
+            <label for="precio">Precio</label>
             <input
               type="number"
               class="form-control"
-              id="edad"
-              placeholder="18"
-              min="18"
-              max="99"
+              id="precio"
+              placeholder="$XXXXXXX"
+              required
+            />
+            <label for="origen_ciudad">Ciudad de Origen</label>
+            <input
+              type="text"
+              class="form-control"
+              id="precio"
+              placeholder="Ciudad de salida"
+              required
+            />
+            <br />
+            <label for="destino_ciudad">Ciudad de Destino</label>
+            <input
+              type="text"
+              class="form-control"
+              id="precio"
+              placeholder="Ciudad de destino"
               required
             />
             <br />
@@ -65,9 +80,10 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Nombres</th>
-                <th>Email</th>
-                <th>Edad</th>
+                <th>Hora de Salida</th>
+                <th>Precio</th>
+                <th>Ciudad de Origen</th>
+                <th>Ciudad de Destino</th>
                 <th>Opciones</th>
               </tr>
             </thead>
