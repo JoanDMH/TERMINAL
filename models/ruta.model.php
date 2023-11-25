@@ -59,7 +59,7 @@
         }
         public static function borrarDato($id_ruta){
             try{
-                $sql = "DELETE FROM ruta WHERE id_ruta = $id_ruta";
+                $sql = "DELETE FROM ruta WHERE id_ruta = id_ruta";
                 $stmt = Connection::getConnection() -> prepare($sql);
                 $stmt -> bindParam(':id_ruta',$id_ruta);
                 $stmt -> execute();
