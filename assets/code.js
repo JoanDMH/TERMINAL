@@ -37,17 +37,32 @@ const app = new (function () {
         form.append("precio", this.precio.value);
         form.append("origen_ciudad", this.origen_ciudad.value);
         form.append("destino_ciudad", this.destino_ciudad.value);
-        fetch("../controllers/guardar.ruta.php",{
-            method:"POST",
-            body:form,
-        })
-        .then((res)=> res.json())
-        .then((data)=> {
-            alert("success");
-            this.listado();
-            this.limpiar();
-        })
-        .catch((error) => console.log(error));
+        form.append("id_ruta", this.id_ruta.value);
+        if(this.id_ruta.value == ""){
+            fetch("../controllers/guardar.ruta.php",{
+                method:"POST",
+                body:form,
+            })
+            .then((res)=> res.json())
+            .then((data)=> {
+                alert("success");
+                this.listado();
+                this.limpiar();
+            })
+            .catch((error) => console.log(error));
+        }else{
+            fetch("../controllers/actualizar.ruta.php",{
+                method:"POST",
+                body:form,
+            })
+            .then((res)=> res.json())
+            .then((data)=> {
+                alert("success update");
+                this.listado();
+                this.limpiar();
+            })
+            .catch((error) => console.log(error));
+        }
     };
     this.editar = (id_ruta) =>{
         var form = new FormData();
