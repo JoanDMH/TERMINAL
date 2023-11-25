@@ -1,5 +1,5 @@
 <?php
-    require_once "./app/config/connection.php";
+    require_once "C:\Users\tecno\OneDrive\Documentos\GitHub\TERMINAL\app\config\connection.php";
 
     class Ruta extends Connection{
         public static function mostrarDatos(){
@@ -17,7 +17,7 @@
             try{
                 $sql = "SELECT * FROM ruta WHERE id_ruta = $id_ruta";
                 $stmt = Connection::getConnection() ->prepare($sql);
-                $stmt -> bindParam(':id',$id_ruta);
+                //$stmt -> bindParam(':id',$id_ruta);
                 $stmt -> execute();
                 $result = $stmt -> fetchAll();
                 return $result;
@@ -33,8 +33,7 @@
                 $stmt -> bindParam(':fecha',$data['fecha']);
                 $stmt -> bindParam(':hora_sal',$data['hora_sal']);
                 $stmt -> bindParam(':precio',$data['precio']);
-                //$stmt -> bindParam(':origen_ciudad',$data['origen_ciudad']);
-                //$stmt -> bindParam(':destino_ciudad',$data['destino_ciudad']);
+                
                 $stmt -> execute();
                 return true;
             }catch (PDOException $th){
@@ -49,8 +48,7 @@
                 $stmt -> bindParam(':fecha',$data['fecha']);
                 $stmt -> bindParam(':hora_sal',$data['hora_sal']);
                 $stmt -> bindParam(':precio',$data['precio']);
-                //$stmt -> bindParam(':origen_ciudad',$data['origen_ciudad']);
-                //$stmt -> bindParam(':destino_ciudad',$data['destino_ciudad']);
+                
                 $stmt -> execute();
                 return true;
             }catch (PDOException $th){
@@ -59,7 +57,7 @@
         }
         public static function borrarDato($id_ruta){
             try{
-                $sql = "DELETE FROM ruta WHERE id_ruta = id_ruta";
+                $sql = "DELETE FROM ruta WHERE id_ruta = :id_ruta";
                 $stmt = Connection::getConnection() -> prepare($sql);
                 $stmt -> bindParam(':id_ruta',$id_ruta);
                 $stmt -> execute();

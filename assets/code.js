@@ -71,42 +71,6 @@ const app = new (function () {
     };
     
 
-    /*
-    this.guardar=()=>{
-        var form = new FormData();
-        form.append("fecha", this.fecha.value);
-        form.append("hora_sal", this.hora_sal.value);
-        form.append("precio", this.precio.value);
-        form.append("origen_ciudad", this.origen_ciudad.value);
-        form.append("destino_ciudad", this.destino_ciudad.value);
-        form.append("id_ruta", this.id_ruta.value);
-        if(this.id_ruta.value == ""){
-            fetch("../controllers/guardar.ruta.php",{
-                method:"POST",
-                body:form,
-            })
-            .then((res)=> res.json())
-            .then((data)=> {
-                alert("success");
-                this.listado();
-                this.limpiar();
-            })
-            .catch((error) => console.log(error));
-        }else{
-            fetch("../controllers/actualizar.ruta.php",{
-                method:"POST",
-                body:form,
-            })
-            .then((res)=> res.json())
-            .then((data)=> {
-                alert("success update");
-                this.listado();
-                this.limpiar();
-            })
-            .catch((error) => console.log(error));
-        }
-    };
-    */
     this.editar = (id_ruta) =>{
         var form = new FormData();
         form.append("id_ruta", id_ruta);
@@ -120,8 +84,7 @@ const app = new (function () {
         this.fecha.value = data.fecha;
         this.hora_sal.value = data.hora_sal;
         this.precio.value = data.precio;
-        this.origen_ciudad.value = data.origen_ciudad;
-        this.destino_ciudad.value = data.destino_ciudad;
+       
        })
        .catch((error)=>console.log(error));
     }
@@ -144,8 +107,7 @@ const app = new (function () {
         this.fecha.value = "";
         this.hora_sal.value = "";
         this.precio.value = "";
-        this.origen_ciudad.value = "";
-        this.destino_ciudad.value = "";
+        
     }
 })();
 app.listado();
