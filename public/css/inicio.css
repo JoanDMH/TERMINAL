@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #c70000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    font-size: 30px; /* Tamaño de la fuente */
+    border-radius: 1000px; /* Bordes redondeados */
+}
+
+.seccion {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007BFF;
+}
