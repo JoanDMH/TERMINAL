@@ -5,7 +5,7 @@ class Connection
   public $dbname = 'terminal';
   public $port ="5432";
   public $user = 'postgres';
-  public $password = '1qaz2wsx';
+  public $password = '6303';
   public $driver = 'pgsql';
   public $connect;
 

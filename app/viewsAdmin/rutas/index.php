@@ -10,15 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha = $_POST['fecha'];
     $hora_sal = $_POST['hora_sal'];
     $precio = $_POST['precio'];
-    $id_ciud_origen = $_POST['id_ciud_origen'];
+    // Elimina la siguiente línea relacionada con id_ciud_origen
     $id_ciud_destino = $_POST['id_ciud_destino'];
 
-    if ($rutaModel->insertarRuta($fecha, $hora_sal, $precio, $id_ciud_origen, $id_ciud_destino)) {
+    if ($rutaModel->insertarRuta($fecha, $hora_sal, $precio, $id_ciud_destino)) {
         echo "Ruta insertada exitosamente.";
     } else {
         echo "Error al insertar la ruta.";
     }
 }
+
 
 
 
@@ -42,33 +43,28 @@ $ciudades = $rutaModel->getAllCiudades();
     
 
     <!-- Formulario para insertar una ruta -->
-    <h2>Insertar Nueva Ruta</h2>
-    <form action="index.php" method="post">
-        <label for="fecha">Fecha:</label>
-        <input type="date" name="fecha" required><br>
+<h2>Insertar Nueva Ruta</h2>
+<form action="index.php" method="post">
+    <label for="fecha">Fecha:</label>
+    <input type="date" name="fecha" required><br>
 
-        <label for="hora_sal">Hora de Salida:</label>
-        <input type="time" name="hora_sal" required><br>
+    <label for="hora_sal">Hora de Salida:</label>
+    <input type="time" name="hora_sal" required><br>
 
-        <label for="precio">Precio:</label>
-        <input type="number" name="precio" required><br>
+    <label for="precio">Precio:</label>
+    <input type="number" name="precio" required><br>
 
-        <label for="id_ciud_origen">Ciudad Origen:</label>
-        <select name="id_ciud_origen">
-            <?php foreach ($ciudades as $ciudad): ?>
-                <option value="<?php echo $ciudad['id_ciud']; ?>"><?php echo $ciudad['nomb_ciud']; ?></option>
-            <?php endforeach; ?>
-        </select><br>
+    <label for="id_ciud_destino">Ciudad Destino:</label>
+    <select name="id_ciud_destino">
+        <?php foreach ($ciudades as $ciudad): ?>
+            <option value="<?php echo $ciudad['id_ciud']; ?>"><?php echo $ciudad['nomb_ciud']; ?></option>
+        <?php endforeach; ?>
+    </select><br>
 
-        <label for="id_ciud_destino">Ciudad Destino:</label>
-        <select name="id_ciud_destino">
-            <?php foreach ($ciudades as $ciudad): ?>
-                <option value="<?php echo $ciudad['id_ciud']; ?>"><?php echo $ciudad['nomb_ciud']; ?></option>
-            <?php endforeach; ?>
-        </select><br>
+    <input type="submit" value="Insertar Ruta">
+</form>
 
-        <input type="submit" value="Insertar Ruta">
-    </form>
+
 
     
 
@@ -80,7 +76,7 @@ $ciudades = $rutaModel->getAllCiudades();
             <th>Fecha</th>
             <th>Hora de Salida</th>
             <th>Precio</th>
-            <th>Ciudad Origen</th>
+           
             <th>Ciudad Destino</th>
             <th>Acciones</th>
         </tr>
@@ -90,7 +86,6 @@ $ciudades = $rutaModel->getAllCiudades();
                 <td><?php echo $ruta['fecha']; ?></td>
                 <td><?php echo $ruta['hora_sal']; ?></td>
                 <td><?php echo $ruta['precio']; ?></td>
-                <td><?php echo $ruta['id_ciud_origen']; ?></td>
                 <td><?php echo $ruta['id_ciud_destino']; ?></td>
                 <td>
                     <a href="editar.php?id_ruta=<?php echo $ruta['id_ruta']; ?>">Editar</a>

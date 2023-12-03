@@ -8,10 +8,9 @@ class RutaModel {
 
     public function getAllRutas() {
         try {
-            $query = "SELECT ruta.*, ciudades_origen.nomb_ciud AS nomb_ciud_origen, ciudades_destino.nomb_ciud AS nomb_ciud_destino
+            $query = "SELECT ruta.*, ciudades.nomb_ciud AS nomb_ciud_destino
                       FROM ruta
-                      LEFT JOIN ciudades AS ciudades_origen ON ruta.id_ciud_origen = ciudades_origen.id_ciud
-                      LEFT JOIN ciudades AS ciudades_destino ON ruta.id_ciud_destino = ciudades_destino.id_ciud";
+                      LEFT JOIN ciudades ON ruta.id_ciud_destino = ciudades.id_ciud";
             
             $stmt = $this->db->prepare($query);
             $stmt->execute();
@@ -21,49 +20,49 @@ class RutaModel {
             echo "Error al obtener las rutas: " . $e->getMessage();
             return [];
         }
-    }   
+    }
+    
 
     // En RutaModel.php
-public function insertarRuta($fecha, $hora_sal, $precio, $id_ciud_origen, $id_ciud_destino) {
-    try {
-        // Verificar que id_ciud_destino no sea nulo
-        if ($id_ciud_destino === null) {
-            throw new Exception("id_ciud_destino no puede ser nulo.");
+    public function insertarRuta($fecha, $hora_sal, $precio, $id_ciud_destino) {
+        try {
+            // Define el id_ciud_origen como 1 (Granada)
+            $id_ciud_origen = 1;
+    
+            $query = "INSERT INTO ruta (fecha, hora_sal, precio, id_ciud_destino) 
+                      VALUES (:fecha, :hora_sal, :precio, :id_ciud_destino)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':fecha', $fecha);
+            $stmt->bindParam(':hora_sal', $hora_sal);
+            $stmt->bindParam(':precio', $precio);
+            $stmt->bindParam(':id_ciud_destino', $id_ciud_destino);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            echo "Error en PDO: " . $e->getMessage();
+            return false;
         }
-
-        $query = "INSERT INTO ruta (fecha, hora_sal, precio, id_ciud_origen, id_ciud_destino) 
-                  VALUES (:fecha, :hora_sal, :precio, :id_ciud_origen, :id_ciud_destino)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':fecha', $fecha);
-        $stmt->bindParam(':hora_sal', $hora_sal);
-        $stmt->bindParam(':precio', $precio);
-        $stmt->bindParam(':id_ciud_origen', $id_ciud_origen);
-        $stmt->bindParam(':id_ciud_destino', $id_ciud_destino);
-        return $stmt->execute();
-    } catch (Exception $e) {
-        echo "Error en PDO: " . $e->getMessage();
-        return false;
     }
-}
+    
+    
 
 
     // Agrega funciones para actualizar, eliminar y obtener una ruta por su id
-    public function updateRuta($id_ruta, $fecha, $hora_sal, $precio, $id_ciud_origen, $id_ciud_destino) {
+    public function updateRuta($id_ruta, $fecha, $hora_sal, $precio, $id_ciud_destino) {
         try {
-            $stmt = $this->db->prepare("UPDATE ruta SET fecha = :fecha, hora_sal = :hora_sal, precio = :precio, id_ciud_origen = :id_ciud_origen, id_ciud_destino = :id_ciud_destino WHERE id_ruta = :id_ruta");
+            $stmt = $this->db->prepare("UPDATE ruta SET fecha = :fecha, hora_sal = :hora_sal, precio = :precio, id_ciud_destino = :id_ciud_destino WHERE id_ruta = :id_ruta");
             $stmt->bindParam(':id_ruta', $id_ruta, PDO::PARAM_INT);
             $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
             $stmt->bindParam(':hora_sal', $hora_sal, PDO::PARAM_STR);
             $stmt->bindParam(':precio', $precio, PDO::PARAM_INT);
-            $stmt->bindParam(':id_ciud_origen', $id_ciud_origen, PDO::PARAM_INT);
             $stmt->bindParam(':id_ciud_destino', $id_ciud_destino, PDO::PARAM_INT);
-
+    
             return $stmt->execute();
         } catch (PDOException $e) {
             echo "Error al actualizar la ruta: " . $e->getMessage();
             return false;
         }
     }
+    
     
     public function getRutaById($id_ruta) {
         $query = "SELECT * FROM ruta WHERE id_ruta = :id_ruta";

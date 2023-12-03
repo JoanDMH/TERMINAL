@@ -25,11 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_ruta'])) {
     $fecha = $_POST['fecha'];
     $hora_sal = $_POST['hora_sal'];
     $precio = $_POST['precio'];
-    $id_ciud_origen = $_POST['id_ciud_origen'];
     $id_ciud_destino = $_POST['id_ciud_destino'];
 
     // Lógica para actualizar la ruta en la base de datos
-    if ($rutaModel->updateRuta($id_ruta, $fecha, $hora_sal, $precio, $id_ciud_origen, $id_ciud_destino)) {
+    if ($rutaModel->updateRuta($id_ruta, $fecha, $hora_sal, $precio, $id_ciud_destino)) {
         header("Location: index.php"); // Redirige a index.php después de la edición exitosa
         exit();
     } else {
@@ -61,13 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id_ruta'])) {
         <label for="precio">Precio:</label>
         <input type="number" name="precio" value="<?php echo $ruta['precio']; ?>" required><br>
 
-        <label for="id_ciud_origen">Ciudad Origen:</label>
-        <select name="id_ciud_origen" required>
-            <?php foreach ($ciudades as $ciudad) : ?>
-                <option value="<?php echo $ciudad['id_ciud']; ?>" <?php echo ($ciudad['id_ciud'] == $ruta['id_ciud_origen']) ? 'selected' : ''; ?>><?php echo $ciudad['nomb_ciud']; ?></option>
-            <?php endforeach; ?>
-        </select><br>
-
+        <!-- Elimina la selección de la ciudad de origen ya que no existe -->
+        
         <label for="id_ciud_destino">Ciudad Destino:</label>
         <select name="id_ciud_destino" required>
             <?php foreach ($ciudades as $ciudad) : ?>
