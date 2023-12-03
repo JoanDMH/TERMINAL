@@ -1,6 +1,6 @@
 <?php
 
-require_once "../config/connection.php";
+require_once "/home/joan/Escritorio/TERMINAL/app/config/connection.php";
 
 class ClienteModel {
     private $conn;
@@ -56,6 +56,18 @@ class ClienteModel {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
+    public function getNombresClientes() {
+        try {
+            $query = "SELECT id_cli, nomb_cli FROM clientes";
+            $stmt = $this->conn->prepare($query);  // Utiliza $this->conn en lugar de $this->db
+            $stmt->execute();
+    
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error al obtener los nombres de clientes: " . $e->getMessage();
+            return [];
+        }
+    }
+    
 }
 ?>

@@ -32,7 +32,7 @@ $transportadoras = TransportadoraModel::getTransportadoras();
     <title>CRUD Transportadoras</title>
 </head>
 <body>
-
+<?php include '../menu.php'; ?>
 
 <!-- Formulario de creación de transportadora aquí -->
 <h2>Crear nueva transportadora</h2>

@@ -1,7 +1,7 @@
 <?php
 require_once 'ContratoModel.php';
-require_once '/home/joan/Escritorio/TerminalVIllavicencio/app/viewsAdmin/buses/BusesModel.php';
-require_once '/home/joan/Escritorio/TerminalVIllavicencio/app/viewsAdmin/conductores/ConductorModel.php';
+require_once '/home/joan/Escritorio/TERMINAL/app/viewsAdmin/buses/BusesModel.php';
+require_once '/home/joan/Escritorio/TERMINAL/app/viewsAdmin/conductores/ConductorModel.php';
 
 // Obtener la lista de contratos
 $contratos = ContratoModel::getContratos();
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 <body>
 
 <h2>Listado de Contratos</h2>
-
+<?php include '../menu.php'; ?>
 <!-- Formulario para crear un nuevo contrato -->
 <form method="post" action="index.php">
     <label for="id_bus">ID Bus:</label>
@@ -72,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 </form>
 
 <a href="reporteContratos.php">Ver Reporte de Conductores sin Contrato</a></br>
-<a href="detallesContratos.php">Ver Detalles de Contratos</a></br>
-<a href="vistaGeneralContrato.php">Ver Detalles de Contratos</a></br>
+<a href="detallesContratos.php">Ver Detalles de Contratos Actuales Vigentes</a></br>
+<a href="vistaGeneralContrato.php">Ver Todos los Detalles  de Contratos</a></br>
 
 
 

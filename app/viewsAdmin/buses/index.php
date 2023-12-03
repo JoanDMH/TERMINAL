@@ -1,6 +1,6 @@
 <?php
 require_once 'BusesModel.php';
-require_once '/home/joan/Escritorio/TerminalVIllavicencio/app/viewsAdmin/transportadora/TransportadoraModel.php';
+require_once '/home/joan/Escritorio/TERMINAL/app/viewsAdmin/transportadora/TransportadoraModel.php';
 $transportadorasList = TransportadoraModel::getTransportadorasList();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
@@ -39,7 +39,7 @@ $buses = BusesModel::getBuses();
     <title>CRUD de Buses</title>
 </head>
 <body>
-
+<?php include '../menu.php'; ?>
 <h2>Crear nuevo Bus</h2>
 <form method="post" action="index.php">
     <label for="id_bus">ID Bus:</label>
@@ -49,7 +49,14 @@ $buses = BusesModel::getBuses();
     <input type="text" name="modelo" required><br>
 
     <label for="capacidad">Capacidad:</label>
-    <input type="number" name="capacidad" required><br>
+<select name="capacidad" required>
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="40">40</option>
+</select>
+<br>
+
 
     <label for="id_tran">ID Transportadora:</label>
     <select name="id_tran" required>

@@ -1,6 +1,6 @@
 <?php
 require_once 'ContratoModel.php';
-require_once '/home/joan/Escritorio/TerminalVIllavicencio/app/viewsAdmin/transportadora/TransportadoraModel.php';
+require_once '/home/joan/Escritorio/TERMINAL/app/viewsAdmin/conductores/ConductorModel.php';
 
 
 // Obtener la lista de contratos actuales de los conductores

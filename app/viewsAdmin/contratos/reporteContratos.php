@@ -1,5 +1,5 @@
 <?php
-require_once '/home/joan/Escritorio/TerminalVIllavicencio/app/viewsAdmin/conductores/ConductorModel.php';
+require_once '/home/joan/Escritorio/TERMINAL/app/viewsAdmin/conductores/ConductorModel.php';
 require_once 'ContratoModel.php';
 
 // Obtener la lista de conductores sin contrato

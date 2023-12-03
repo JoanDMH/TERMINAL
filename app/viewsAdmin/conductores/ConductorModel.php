@@ -98,5 +98,17 @@ class ConductorModel {
 
         return false;
     }
+    public static function getConductoresSinContrato() {
+        try {
+            $connection = Connection::getConnection();
+            $query = "SELECT * FROM conductores
+                      WHERE id_cond NOT IN (SELECT id_cond FROM contrato)";
+            $result = $connection->query($query);
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return [];
+        }
+    }
 }
 ?>

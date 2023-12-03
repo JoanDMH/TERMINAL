@@ -1,5 +1,5 @@
 <?php
-require_once 'Connection.php';
+require_once '../../config/connection.php';
 
 // Realiza la conexión a la base de datos
 $connection = Connection::getConnection();

@@ -79,5 +79,18 @@ class BusesModel {
             return null;
         }
     }
+    public static function getModelosBuses() {
+        try {
+            $conn = Connection::getConnection();
+            $query = "SELECT id_bus, modelo FROM buses";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+    
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error al obtener los modelos de buses: " . $e->getMessage();
+            return [];
+        }
+    }
 }
 ?>

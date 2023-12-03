@@ -1,3 +1,39 @@
+<?php
+// index.php
+
+require_once '../../config/connection.php';
+require_once 'ConductorModel.php';
+
+// Procesar el formulario cuando se envía
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validar y obtener datos del formulario
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $celular = $_POST['celular'];
+    $correo = $_POST['correo'];
+
+    // Validaciones (puedes agregar más según tus requisitos)
+
+    // Crear un array con los datos del conductor
+    $conductorData = array(
+        'id' => $id,
+        'nombre' => $nombre,
+        'apellido' => $apellido,
+        'celular' => $celular,
+        'correo' => $correo
+    );
+
+    // Llamar al método para agregar conductor en el modelo
+    if (ConductorModel::addConductor($conductorData)) {
+        echo "Conductor agregado exitosamente.";
+    } else {
+        echo "Error al agregar conductor.";
+    }
+}
+
+// Mostrar formulario para insertar conductores
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

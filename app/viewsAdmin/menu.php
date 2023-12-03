@@ -62,7 +62,7 @@
                         <a class="nav-link" href="/app/viewsAdmin/buses/index.php">Buses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Rutas</a>
+                        <a class="nav-link" href="/app/viewsAdmin/rutas/index.php">Rutas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/app/viewsAdmin/transportadora/index.php">Transportadora</a>
@@ -74,7 +74,7 @@
                         <a class="nav-link" href="/app/viewsAdmin/ciudades/index_ciudades.php">Ciudades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">tickets</a>
+                        <a class="nav-link" href="/app/viewsAdmin/tickets/index.php">tickets</a>
                     </li>
                 </ul>
 
